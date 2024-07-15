@@ -1,0 +1,28 @@
+#header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    // padding: 40px 0 20px;
+    background: #fff;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        svg {
+            font-size: 24px;
+        }
+    }
+    &__right {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+}

@@ -1,0 +1,23 @@
+.products {
+    padding: 30px 20px;
+    &__carts {
+        width: 100%;
+        &__head {
+            padding: 10px 0;
+            color: #fff;
+            th {
+                padding: 15px 20px;
+                background: #363740;
+            }
+        }
+    }
+    &__cart {
+        td {
+            button {
+                border: 1px solid #000;
+                padding: 4px 5px;
+                border-radius: 4px;
+            }
+        }
+    }
+}

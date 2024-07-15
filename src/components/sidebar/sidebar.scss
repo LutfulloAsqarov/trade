@@ -1,0 +1,96 @@
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: #fff;
+    color: #202224;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-right: 0.9px solid #e0e0e0;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 40px 20px;
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        &__icon {
+            font-size: 30px;
+        }
+    }
+
+    &__collection {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .active {
+        border-left: 4px solid #4880ff;
+        // border-radius: 0 5px 5px 0;
+        span {
+            color: #fff;
+            background: #4880ff;
+        }
+    }
+
+    &__link {
+        padding: 0 20px;
+        display: flex;
+        border-left: 4px solid transparent;
+
+        span {
+            display: flex;
+            // align-items: center;
+            gap: 16px;
+            padding: 15px 20px;
+            height: 100%;
+            width: 100%;
+
+            // border-left: 3px solid transparent;
+            transition: 0.3s;
+            font-size: 14px;
+            border-radius: 8px;
+            &:hover {
+                background: #4880ff;
+                color: #dde2ff;
+            }
+        }
+    }
+
+    // &__link {
+    //     // padding: 20px;
+    //     span {
+    //         gap: 16px;
+    //         display: flex;
+    //         align-items: center;
+    //         // padding: 15px 20px;
+    //         // border-left: 3px solid transparent;
+    //         transition: 0.3s;
+    //         font-size: 14px;
+    //         border-radius: 8px;
+    //         &:hover {
+    //             background: #4880ff;
+    //             color: #dde2ff;
+    //         }
+    //     }
+    // }
+    &__btn {
+        display: flex;
+        align-items: center;
+        padding: 40px 30px;
+        color: #a4a6b3;
+        gap: 16px;
+        font-size: 18px;
+        transition: 0.3s;
+        &:hover {
+            color: red;
+        }
+    }
+}
