@@ -11,6 +11,10 @@ a {
     color: inherit;
 }
 
+input {
+    outline: none;
+}
+
 button {
     background: transparent;
     border: none;
@@ -26,10 +30,19 @@ th {
     text-align: start;
 }
 
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
 td {
     padding: 15px 20px;
 }
 
-tr:nth-child(odd) {
-    background: #f5f5f5;
+.route__title {
+    color: #202224;
+    font-size: 32px;
+    line-height: 43.65px;
+    letter-spacing: -0.11428570002317429px;
+    text-align: left;
+    padding-bottom: 30px;
 }

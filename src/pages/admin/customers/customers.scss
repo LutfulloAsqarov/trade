@@ -1,7 +1,8 @@
 .products {
-    padding: 30px 20px;
+    padding: 30px 30px;
     &__carts {
         width: 100%;
+        background: #fff;
         &__head {
             padding: 10px 0;
             color: #fff;
@@ -13,10 +14,37 @@
     }
     &__cart {
         td {
-            button {
+            button,
+            a {
                 border: 1px solid #000;
                 padding: 4px 5px;
                 border-radius: 4px;
+            }
+        }
+        .green {
+            color: #00b69b;
+            background: #ccf0ec;
+        }
+        .purple {
+            color: #6226ef;
+            background: #e0d4fc;
+        }
+        .red {
+            color: #ef3826;
+            background: #fdd7d4;
+        }
+        &__budget {
+            // width: 100px;
+            display: flex;
+            span {
+                // width: 100%;
+                // min-width: 100px;
+                // min-height: 100px;
+
+                padding: 6px 10px;
+                width: 100px;
+                text-align: center;
+                border-radius: 30px;
             }
         }
     }

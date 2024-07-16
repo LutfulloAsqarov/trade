@@ -9,7 +9,7 @@ const Admin = () => {
     return (
         <div className="admin">
             <Sidebar />
-            <div>
+            <div style={{ background: "#F5F6FA" }}>
                 <Header />
                 <Outlet />
             </div>

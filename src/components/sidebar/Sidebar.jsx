@@ -47,6 +47,14 @@ const Sidebar = () => {
                         </span>
                     </NavLink>
                 </li>
+                <li className="sidebar__item">
+                    <NavLink className={"sidebar__link"} to={"createCustomer"}>
+                        <span>
+                            <FaLightbulb />
+                            Create
+                        </span>
+                    </NavLink>
+                </li>
             </ul>
             <button className="sidebar__btn" onClick={handleLogout}>
                 <RxExit />

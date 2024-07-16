@@ -29,6 +29,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
+        gap: 10px;
         width: 100%;
     }
     .active {
@@ -47,19 +48,17 @@
 
         span {
             display: flex;
-            // align-items: center;
             gap: 16px;
             padding: 15px 20px;
             height: 100%;
             width: 100%;
 
-            // border-left: 3px solid transparent;
             transition: 0.3s;
             font-size: 14px;
             border-radius: 8px;
             &:hover {
-                background: #4880ff;
-                color: #dde2ff;
+                background: #82aeff;
+                color: #fff;
             }
         }
     }

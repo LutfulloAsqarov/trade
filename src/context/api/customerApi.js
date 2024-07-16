@@ -9,20 +9,20 @@ export const customerApi = api.injectEndpoints({
             }),
             providesTags: ["Customer"],
         }),
-        // getCustomerById: build.query({
-        //     query: (id) => ({
-        //         url: `/customers/${id}`,
-        //     }),
-        //     providesTags: ["Customer"],
-        // }),
-        // createCustomer: build.mutation({
-        //     query: (body) => ({
-        //         url: "/customers",
-        //         method: "POST",
-        //         body,
-        //     }),
-        //     invalidatesTags: ["Customer"],
-        // }),
+        getCustomerById: build.query({
+            query: (id) => ({
+                url: `/get/customer/${id}`,
+            }),
+            providesTags: ["Customer"],
+        }),
+        createCustomer: build.mutation({
+            query: (body) => ({
+                url: "/create/customer",
+                method: "POST",
+                body,
+            }),
+            invalidatesTags: ["Customer"],
+        }),
         // deleteCustomer: build.mutation({
         //     query: (id) => ({
         //         url: `/customers/${id}`,
@@ -30,19 +30,20 @@ export const customerApi = api.injectEndpoints({
         //     }),
         //     invalidatesTags: ["Customer"],
         // }),
-        // updateCustomer: build.mutation({
-        //     query: ({ id, body }) => ({
-        //         url: `/customers/${id}`,
-        //         method: "PUT", // or "PATCH"
-        //         body,
-        //     }),
-        //     invalidatesTags: ["Customer"],
-        // }),
+        updateCustomer: build.mutation({
+            query: ({ id, body }) => ({
+                url: `/update/customer/${id}`,
+                method: "PATCH", // or "PATCH"
+                body,
+            }),
+            invalidatesTags: ["Customer"],
+        }),
     }),
 });
 
 export const {
     useGetCustomersQuery,
+    useGetCustomerByIdQuery,
     useCreateCustomerMutation,
     useDeleteCustomerMutation,
     useUpdateCustomerMutation,
