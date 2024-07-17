@@ -66,7 +66,7 @@ const CreateCustomer = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <button>submit</button>
+                <button>Submit</button>
             </form>
         </div>
     );

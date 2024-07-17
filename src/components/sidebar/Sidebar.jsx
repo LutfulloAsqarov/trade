@@ -6,21 +6,29 @@ import { FaTicket } from "react-icons/fa6";
 import { FaLightbulb } from "react-icons/fa";
 import { RxExit } from "react-icons/rx";
 import "./sidebar.scss";
+import { useGetProfileQuery } from "../../context/api/adminApi";
 
 const Sidebar = () => {
     let navigate = useNavigate();
     const handleLogout = () => {
         if (confirm("Aru you sure?")) {
-            localStorage.clear();
-            navigate("/");
+            localStorage.removeItem("x-auth-token");
+            navigate("/login");
         }
     };
+    let { data } = useGetProfileQuery();
 
     return (
         <div className="sidebar">
             <div className="sidebar__title">
-                <IoCube className="sidebar__title__icon" />
-                <h2>Dashboard</h2>
+                <div className="sidebar__profile">
+                    {data?.innerData?.user?.lname.slice(0, 1)}
+                    {data?.innerData?.user?.fname.slice(0, 1)}
+                </div>
+                <h2>
+                    {data?.innerData?.user?.lname}{" "}
+                    {data?.innerData?.user?.fname}
+                </h2>
             </div>
             <ul className="sidebar__collection">
                 <li className="sidebar__item">

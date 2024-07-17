@@ -4,6 +4,10 @@
         padding: 30px;
         background: #fff;
         border-radius: 10px;
+        // display: flex;
+        // flex-direction: column;
+        // gap: 30px;
+        // align-items: flex-start;
         &__inputs {
             display: flex;
             align-items: center;
@@ -16,6 +20,14 @@
                 border-radius: 6px;
                 background: #f5f6fa;
             }
+        }
+        button {
+            background: #4980ff;
+            color: #fff;
+            padding: 10px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            margin-top: 30px;
         }
     }
 }

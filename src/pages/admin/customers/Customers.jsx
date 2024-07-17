@@ -3,63 +3,41 @@ import {
     useGetCustomersQuery,
     useUpdateCustomerMutation,
 } from "../../../context/api/customerApi";
-// import axios from "../../../api";
-// import { useEffect, useState } from "react";
-// import Header from "../../../components/header/Header";
-// import useFetch from "../../../hooks/useFetch";
 import "./customers.scss";
 import { Link } from "react-router-dom";
 import Model from "../../../components/model/Model";
 import CreatePayment from "../../../components/createPayment/CreatePayment";
+import Typography from "@mui/material/Typography";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+
+import CustomerCarts from "../../../components/customer-carts/CustomerCarts";
 
 const Customers = () => {
     const [payment, setPayment] = useState(false);
-    let { data } = useGetCustomersQuery();
+    const [page, setPage] = React.useState(1);
+    let { data } = useGetCustomersQuery({ page: page - 1 });
+    let count = Math.ceil(data?.totalCount / 10);
+    // console.log(data?.totalCount / data?.innerData?.length);
 
     let [updateCustomer] = useUpdateCustomerMutation();
 
-    const handlePin = (el) => {
-        el = { ...el, pin: !el.pin };
-        updateCustomer({ body: el, id: el._id });
+    const handleChange = (event, value) => {
+        setPage(value);
     };
 
-    // console.log(payment._id);
-
     let productItems = data?.innerData.map((el) => (
-        <tr key={el._id} className="products__cart">
-            <td>{el._id}</td>
-            <td>{el.fname}</td>
-            <td>{el.address}</td>
-            <td>{el.phone_primary}</td>
-            <td className={`products__cart__budget`}>
-                <span
-                    className={` ${
-                        el.budget > 0
-                            ? "green"
-                            : el.budget === 0
-                            ? "purple"
-                            : "red"
-                    }`}
-                >
-                    {el.budget}
-                </span>
-            </td>
-            <td>
-                <Link to={`/customers/${el._id}`}>batafsil</Link>{" "}
-                <button onClick={() => handlePin(el)}>pin</button>
-                <button onClick={() => setPayment(el)}>payment</button>
-            </td>
-        </tr>
+        <CustomerCarts key={el._id} el={el} />
     ));
 
     return (
         <>
-            <section id="products">
-                <div className="products container">
+            <section id="customers">
+                <div className="customers container">
                     <h2 className="route__title">CUSTOMERS</h2>
-                    <table className="products__carts">
+                    <table className="customers__carts">
                         <thead>
-                            <tr className="products__carts__head">
+                            <tr className="customers__carts__head">
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Address</th>
@@ -70,6 +48,14 @@ const Customers = () => {
                         </thead>
                         <tbody>{productItems}</tbody>
                     </table>
+                    <Stack className="customers__page" spacing={2}>
+                        {/* <Typography>Page: {page}</Typography> */}
+                        <Pagination
+                            count={count}
+                            page={page}
+                            onChange={handleChange}
+                        />
+                    </Stack>
                 </div>
             </section>
             {payment ? (

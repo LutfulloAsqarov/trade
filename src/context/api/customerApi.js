@@ -3,9 +3,8 @@ import { api } from "./index";
 export const customerApi = api.injectEndpoints({
     endpoints: (build) => ({
         getCustomers: build.query({
-            query: (params) => ({
-                url: "/get/customers",
-                params,
+            query: ({ page }) => ({
+                url: `/get/customers?skip=${page}`,
             }),
             providesTags: ["Customer"],
         }),

@@ -12,12 +12,12 @@ import { useGetPaymentQuery } from "../../../context/api/paymentApi";
 
 const CustomerDetail = () => {
     const [editUser, setEditUser] = useState(null);
+    const [showHistory, setShowHistory] = useState(false);
     let [updateCustomer] = useUpdateCustomerMutation();
     let { id } = useParams();
     let { data } = useGetCustomerByIdQuery(id);
     const [payment, setPayment] = useState(false);
     let { data: history } = useGetPaymentQuery();
-    console.log(history);
 
     const handleEdit = (el) => {
         setEditUser(el);
@@ -30,8 +30,6 @@ const CustomerDetail = () => {
             lname: editUser.lname,
             phone_primary: editUser.phone_primary,
             address: editUser.address,
-            pin: editUser.pin,
-            budget: editUser.budget,
         };
         updateCustomer({ body: updateUser, id: editUser._id });
         setEditUser(false);
@@ -52,26 +50,12 @@ const CustomerDetail = () => {
                 <div className="detail__wrapper">
                     <div className="detail__info">
                         <p>
-                            {" "}
-                            <span>Name: </span>
                             {data?.innerData?.fname} {data?.innerData?.lname}
                         </p>
-                        <p>
-                            <span>ID: </span>
-                            {data?.innerData?._id}
-                        </p>
-                        <p>
-                            <span>Budget: </span>
-                            {data?.innerData?.budget}
-                        </p>
-                        <p>
-                            <span>Address: </span>
-                            {data?.innerData?.address}
-                        </p>
-                        <p>
-                            <span>Phone: </span>
-                            {data?.innerData?.phone_primary}
-                        </p>
+                        <p>{data?.innerData?._id}</p>
+                        <p>{data?.innerData?.budget}</p>
+                        <p>{data?.innerData?.address}</p>
+                        <p>{data?.innerData?.phone_primary}</p>
                     </div>
                     <div className="detail__btns">
                         <button
@@ -88,9 +72,22 @@ const CustomerDetail = () => {
                         </button>
                     </div>
                 </div>
-                <div className="history">
-                    <div className="history__carts">{historyItems}</div>
-                </div>
+                <button
+                    onClick={() => setShowHistory(true)}
+                    className="history__btn"
+                >
+                    History
+                </button>
+                {showHistory ? (
+                    <Model close={setShowHistory} width={800}>
+                        <h2>History</h2>
+                        <div className="history">
+                            <div className="history__carts">{historyItems}</div>
+                        </div>
+                    </Model>
+                ) : (
+                    <></>
+                )}
             </div>
 
             {editUser ? (
@@ -101,75 +98,67 @@ const CustomerDetail = () => {
                         onSubmit={handleUpdatedUser}
                     >
                         <h2>Edit Customer</h2>
-                        <input
-                            required
-                            value={editUser.fname}
-                            onChange={(e) =>
-                                setEditUser((prev) => ({
-                                    ...prev,
-                                    fname: e.target.value,
-                                }))
-                            }
-                            type="text"
-                        />
-                        <input
-                            required
-                            value={editUser.lname}
-                            onChange={(e) =>
-                                setEditUser((prev) => ({
-                                    ...prev,
-                                    lname: e.target.value,
-                                }))
-                            }
-                            type="text"
-                        />
-                        <input
-                            required
-                            value={editUser.phone_primary}
-                            onChange={(e) =>
-                                setEditUser((prev) => ({
-                                    ...prev,
-                                    phone_primary: e.target.value,
-                                }))
-                            }
-                            type="text"
-                        />
-                        <input
-                            required
-                            value={editUser.address}
-                            onChange={(e) =>
-                                setEditUser((prev) => ({
-                                    ...prev,
-                                    address: e.target.value,
-                                }))
-                            }
-                            type="text"
-                        />
-                        <input
-                            required
-                            value={editUser.budget}
-                            onChange={(e) =>
-                                setEditUser((prev) => ({
-                                    ...prev,
-                                    budget: e.target.value,
-                                }))
-                            }
-                            type="text"
-                        />
-                        <input
-                            required
-                            value={editUser.pin}
-                            onChange={(e) =>
-                                setEditUser((prev) => ({
-                                    ...prev,
-                                    pin: e.target.value,
-                                }))
-                            }
-                            type="text"
-                        />
-                        <button onClick={() => setEditUser(false)}>
-                            Close
-                        </button>
+                        <div className="edit-model__input">
+                            <label htmlFor="fname">Ism</label>
+                            <input
+                                required
+                                value={editUser.fname}
+                                onChange={(e) =>
+                                    setEditUser((prev) => ({
+                                        ...prev,
+                                        fname: e.target.value,
+                                    }))
+                                }
+                                type="text"
+                                id="fname"
+                            />
+                        </div>
+                        <div className="edit-model__input">
+                            <label htmlFor="lname">Familiya</label>
+                            <input
+                                required
+                                value={editUser.lname}
+                                onChange={(e) =>
+                                    setEditUser((prev) => ({
+                                        ...prev,
+                                        lname: e.target.value,
+                                    }))
+                                }
+                                type="text"
+                                id="lname"
+                            />
+                        </div>
+                        <div className="edit-model__input">
+                            <label htmlFor="phone">Telefon</label>
+                            <input
+                                required
+                                value={editUser.phone_primary}
+                                onChange={(e) =>
+                                    setEditUser((prev) => ({
+                                        ...prev,
+                                        phone_primary: e.target.value,
+                                    }))
+                                }
+                                type="text"
+                                id="phone"
+                            />
+                        </div>
+                        <div className="edit-model__input">
+                            <label htmlFor="address">Manzil</label>
+                            <input
+                                required
+                                value={editUser.address}
+                                onChange={(e) =>
+                                    setEditUser((prev) => ({
+                                        ...prev,
+                                        address: e.target.value,
+                                    }))
+                                }
+                                type="text"
+                                id="address"
+                            />
+                        </div>
+
                         <button>Save</button>
                     </form>
                 </Model>

@@ -1,0 +1,38 @@
+.login {
+    width: 100%;
+    height: 100vh;
+    background: url("../../assets/login-bg.jpg") no-repeat center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__form {
+        padding: 30px 50px;
+        width: 630px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        background: #fff;
+        border-radius: 15px;
+    }
+    &__input {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    }
+    button {
+        background: #4980ff;
+        font-size: 18px;
+        padding: 15px 0;
+        color: #fff;
+        border-radius: 8px;
+    }
+}
