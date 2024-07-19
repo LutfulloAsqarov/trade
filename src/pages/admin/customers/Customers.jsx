@@ -20,8 +20,6 @@ const Customers = () => {
     let count = Math.ceil(data?.totalCount / 10);
     // console.log(data?.totalCount / data?.innerData?.length);
 
-    let [updateCustomer] = useUpdateCustomerMutation();
-
     const handleChange = (event, value) => {
         setPage(value);
     };

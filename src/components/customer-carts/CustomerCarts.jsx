@@ -1,79 +1,17 @@
-// import React, { useState } from "react";
-// import { BiDetail } from "react-icons/bi";
-// import { TiPin } from "react-icons/ti";
-// import { MdOutlinePayment } from "react-icons/md";
-// import { IoMdMore } from "react-icons/io";
-// import { Link } from "react-router-dom";
-
-// const CustomerCarts = ({ el }) => {
-//     const [show, setShow] = useState(false);
-
-//     const handlePin = (el) => {
-//         el = { ...el, pin: !el.pin };
-//         updateCustomer({ body: el, id: el._id });
-//     };
-//     return (
-//         <tr key={el._id} className="customers__cart">
-//             <td>{el._id}</td>
-//             <td>{el.fname}</td>
-//             <td>{el.address}</td>
-//             <td>{el.phone_primary}</td>
-//             <td className={`customers__cart__budget`}>
-//                 <span
-//                     className={` ${
-//                         el.budget > 0
-//                             ? "green"
-//                             : el.budget === 0
-//                             ? "purple"
-//                             : "red"
-//                     }`}
-//                 >
-//                     {el.budget}
-//                 </span>
-//             </td>
-//             <td className="customers__btns">
-//                 <div
-//                     className="customers__btns__more"
-//                     onClick={() => setShow(true)}
-//                 >
-//                     <IoMdMore style={{ fontSize: "24px" }} />
-//                     <div
-//                         className={`customers__btns__wrapper ${
-//                             show ? "show" : ""
-//                         }`}
-//                     >
-//                         <Link to={`${el._id}`}>
-//                             <BiDetail /> <span>Batafsil</span>
-//                         </Link>
-
-//                         <button onClick={() => handlePin(el)}>
-//                             <TiPin />
-//                             <span>Qadamoq</span>
-//                         </button>
-
-//                         <button onClick={() => setPayment(el)}>
-//                             <MdOutlinePayment />
-//                             <span>Tolov</span>
-//                         </button>
-//                     </div>
-//                 </div>
-//             </td>
-//         </tr>
-//     );
-// };
-
-// export default CustomerCarts;
-
 import React, { useState, useEffect, useRef } from "react";
 import { BiDetail } from "react-icons/bi";
 import { TiPin } from "react-icons/ti";
 import { MdOutlinePayment } from "react-icons/md";
 import { IoMdMore } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useUpdateCustomerMutation } from "../../context/api/customerApi";
 
-const CustomerCarts = ({ el, updateCustomer, setPayment }) => {
+const CustomerCarts = ({ el, setPayment }) => {
     const [show, setShow] = useState(false);
     const dropdownRef = useRef(null);
+    let [updateCustomer] = useUpdateCustomerMutation();
+
+    console.log(el);
 
     const handlePin = (el) => {
         el = { ...el, pin: !el.pin };
@@ -97,7 +35,7 @@ const CustomerCarts = ({ el, updateCustomer, setPayment }) => {
     }, []);
 
     return (
-        <tr key={el._id} className="customers__cart">
+        <tr key={el._id} className={`customers__cart ${el.pin ? "pin" : ""}`}>
             <td>{el._id}</td>
             <td>{el.fname}</td>
             <td>{el.address}</td>
@@ -116,31 +54,37 @@ const CustomerCarts = ({ el, updateCustomer, setPayment }) => {
                 </span>
             </td>
             <td className="customers__btns">
-                <div
-                    className="customers__btns__more"
-                    onClick={() => setShow(!show)}
-                    ref={dropdownRef}
-                >
-                    <IoMdMore style={{ fontSize: "24px" }} />
+                <div className="customers__btns__main">
                     <div
-                        className={`customers__btns__wrapper ${
-                            show ? "show" : ""
-                        }`}
+                        className="customers__btns__more"
+                        onClick={() => setShow(!show)}
+                        ref={dropdownRef}
                     >
-                        <Link to={`${el._id}`}>
-                            <BiDetail /> <span>Batafsil</span>
-                        </Link>
+                        <IoMdMore />
 
-                        <button onClick={() => handlePin(el)}>
-                            <TiPin />
-                            <span>Qadamoq</span>
-                        </button>
+                        <div
+                            className={`customers__btns__wrapper ${
+                                show ? "show" : ""
+                            }`}
+                        >
+                            <Link to={`${el._id}`}>
+                                <BiDetail /> <span>Batafsil</span>
+                            </Link>
 
-                        <button onClick={() => setPayment(el)}>
-                            <MdOutlinePayment />
-                            <span>Tolov</span>
-                        </button>
+                            <button onClick={() => handlePin(el)}>
+                                <TiPin />
+                                <span>
+                                    {el.pin ? "Olib tashlamoq" : "Qadamoq"}
+                                </span>
+                            </button>
+
+                            <button onClick={() => setPayment(el)}>
+                                <MdOutlinePayment />
+                                <span>Tolov</span>
+                            </button>
+                        </div>
                     </div>
+                    {el.pin ? <TiPin onClick={() => handlePin(el)} /> : <></>}
                 </div>
             </td>
         </tr>
