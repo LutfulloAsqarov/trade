@@ -5,6 +5,7 @@ import { FaChartPie } from "react-icons/fa";
 import { FaTicket } from "react-icons/fa6";
 import { FaLightbulb } from "react-icons/fa";
 import { RxExit } from "react-icons/rx";
+import { FaShoppingBag } from "react-icons/fa";
 import "./sidebar.scss";
 import { useGetProfileQuery } from "../../context/api/adminApi";
 
@@ -13,7 +14,7 @@ const Sidebar = () => {
     const handleLogout = () => {
         if (confirm("Aru you sure?")) {
             localStorage.removeItem("x-auth-token");
-            navigate("/login");
+            navigate("/");
         }
     };
     let { data } = useGetProfileQuery();
@@ -50,7 +51,7 @@ const Sidebar = () => {
                 <li className="sidebar__item">
                     <NavLink className={"sidebar__link"} to={"shop"}>
                         <span>
-                            <FaLightbulb />
+                            <FaShoppingBag />
                             Shop
                         </span>
                     </NavLink>
