@@ -69,29 +69,11 @@
             font-size: 14px;
             border-radius: 8px;
             &:hover {
-                background: #82aeff;
-                color: #fff;
+                color: #474747;
             }
         }
     }
 
-    // &__link {
-    //     // padding: 20px;
-    //     span {
-    //         gap: 16px;
-    //         display: flex;
-    //         align-items: center;
-    //         // padding: 15px 20px;
-    //         // border-left: 3px solid transparent;
-    //         transition: 0.3s;
-    //         font-size: 14px;
-    //         border-radius: 8px;
-    //         &:hover {
-    //             background: #4880ff;
-    //             color: #dde2ff;
-    //         }
-    //     }
-    // }
     &__btn {
         display: flex;
         align-items: center;

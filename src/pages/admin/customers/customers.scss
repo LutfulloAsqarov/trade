@@ -1,5 +1,17 @@
 .customers {
     padding: 30px 30px;
+    &__selection {
+        display: flex;
+        gap: 20px;
+        padding-bottom: 30px;
+        select {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+    }
     &__carts {
         width: 100%;
         background: #fff;
@@ -23,15 +35,15 @@
         // }
         .green {
             color: #00b69b;
-            background: #ccf0ec;
+            // background: #ccf0ec;
         }
         .purple {
             color: #6226ef;
-            background: #e0d4fc;
+            // background: #e0d4fc;
         }
         .red {
             color: #ef3826;
-            background: #fdd7d4;
+            // background: #fdd7d4;
         }
         &__budget {
             // width: 100px;
@@ -62,6 +74,18 @@
             svg {
                 font-size: 24px;
                 cursor: pointer;
+            }
+        }
+        &__pay {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 3px;
+            svg {
+                font-size: 20px;
             }
         }
         &__more {
@@ -100,8 +124,12 @@
     }
     &__page {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         padding: 20px 0;
+    }
+    &__pagination {
+        display: flex;
+        align-items: center;
     }
 }

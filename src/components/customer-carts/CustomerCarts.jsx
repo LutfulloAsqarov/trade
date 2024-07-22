@@ -11,8 +11,6 @@ const CustomerCarts = ({ el, setPayment }) => {
     const dropdownRef = useRef(null);
     let [updateCustomer] = useUpdateCustomerMutation();
 
-    console.log(el);
-
     const handlePin = (el) => {
         el = { ...el, pin: !el.pin };
         updateCustomer({ body: el, id: el._id });
@@ -55,13 +53,19 @@ const CustomerCarts = ({ el, setPayment }) => {
             </td>
             <td className="customers__btns">
                 <div className="customers__btns__main">
+                    <button
+                        className="customers__btns__pay"
+                        onClick={() => setPayment(el)}
+                    >
+                        <MdOutlinePayment />
+                        <span>Tolov</span>
+                    </button>
                     <div
                         className="customers__btns__more"
                         onClick={() => setShow(!show)}
                         ref={dropdownRef}
                     >
                         <IoMdMore />
-
                         <div
                             className={`customers__btns__wrapper ${
                                 show ? "show" : ""
@@ -76,11 +80,6 @@ const CustomerCarts = ({ el, setPayment }) => {
                                 <span>
                                     {el.pin ? "Olib tashlamoq" : "Qadamoq"}
                                 </span>
-                            </button>
-
-                            <button onClick={() => setPayment(el)}>
-                                <MdOutlinePayment />
-                                <span>Tolov</span>
                             </button>
                         </div>
                     </div>

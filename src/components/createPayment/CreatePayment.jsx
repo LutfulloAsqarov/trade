@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCreatePaymentMutation } from "../../context/api/paymentApi";
 
 const CreatePayment = ({ id, setPayment }) => {
@@ -10,17 +10,23 @@ const CreatePayment = ({ id, setPayment }) => {
     };
     const [cusPay, setCusPay] = useState(initialState);
 
-    const [createPayment] = useCreatePaymentMutation(id);
+    const [createPayment, { isSuccess, isLoading }] =
+        useCreatePaymentMutation(id);
 
     const handleChange = (e) => {
         let { name, value } = e.target;
         setCusPay((prev) => ({ ...prev, [name]: value }));
     };
 
+    useEffect(() => {
+        if (isSuccess) {
+            setPayment(false);
+        }
+    }, [isSuccess]);
+
     const handlePaySubmit = (e) => {
         e.preventDefault();
         createPayment(cusPay);
-        setPayment(false);
     };
     return (
         <div>
@@ -40,7 +46,7 @@ const CreatePayment = ({ id, setPayment }) => {
                     value={cusPay.comment}
                     onChange={handleChange}
                 />
-                <button> Save</button>
+                <button> {isLoading ? "Loading..." : "Save"}</button>
             </form>
         </div>
     );
